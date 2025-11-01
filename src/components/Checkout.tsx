@@ -60,7 +60,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
       : '';
     
     const orderDetails = `
-🛒 Bonok's ORDER
+🛒 Banok's ORDER
 
 👤 Customer: ${customerName}
 📞 Contact: ${contactNumber}
@@ -95,7 +95,7 @@ ${serviceType === 'delivery' ? `🛵 DELIVERY FEE:` : ''}
 
 ${notes ? `📝 Notes: ${notes}` : ''}
 
-Please confirm this order to proceed. Thank you for choosing Bonok's! 
+Please confirm this order to proceed. Thank you for choosing Banok's! 
     `.trim();
 
     const encodedMessage = encodeURIComponent(orderDetails);
