@@ -103,33 +103,33 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
   // Form View (Add/Edit)
   if (currentView === 'add' || currentView === 'edit') {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="bg-white shadow-sm border-b">
+      <div className="min-h-screen bg-neutral-black">
+        <div className="bg-neutral-black-light shadow-red-glow border-b-2 border-neutral-black-lighter">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-4">
                 <button
                   onClick={handleCancel}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors duration-200"
+                  className="flex items-center space-x-2 text-neutral-white hover:text-primary-red transition-colors duration-200 font-semibold"
                 >
                   <ArrowLeft className="h-5 w-5" />
                   <span>Back</span>
                 </button>
-                <h1 className="text-2xl font-playfair font-semibold text-black">
+                <h1 className="text-2xl font-bold text-neutral-white">
                   {currentView === 'add' ? 'Add New Category' : 'Edit Category'}
                 </h1>
               </div>
               <div className="flex space-x-3">
                 <button
                   onClick={handleCancel}
-                  className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-4 py-2 border-2 border-neutral-black-lighter bg-neutral-black-lighter text-neutral-white rounded-lg hover:border-primary-red transition-all duration-200 flex items-center space-x-2 font-semibold"
                 >
                   <X className="h-4 w-4" />
                   <span>Cancel</span>
                 </button>
                 <button
                   onClick={handleSaveCategory}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-4 py-2 bg-gradient-to-r from-primary-red to-primary-red-dark text-white rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 flex items-center space-x-2 font-semibold shadow-red-glow"
                 >
                   <Save className="h-4 w-4" />
                   <span>Save</span>
@@ -140,30 +140,30 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
         </div>
 
         <div className="max-w-2xl mx-auto px-4 py-8">
-          <div className="bg-white rounded-xl shadow-sm p-8">
+          <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-xl shadow-red-glow p-8">
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Category Name *</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Category Name *</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleNameChange(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                   placeholder="Enter category name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Category ID *</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Category ID *</label>
                 <input
                   type="text"
                   value={formData.id}
                   onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium disabled:bg-neutral-black-lighter disabled:text-neutral-gray disabled:cursor-not-allowed"
                   placeholder="kebab-case-id"
                   disabled={currentView === 'edit'}
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-neutral-gray mt-1">
                   {currentView === 'edit' 
                     ? 'Category ID cannot be changed after creation'
                     : 'Use kebab-case format (e.g., "hot-drinks", "cold-beverages")'
@@ -172,34 +172,34 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Icon *</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Icon *</label>
                 <div className="flex items-center space-x-3">
                   <input
                     type="text"
                     value={formData.icon}
                     onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="flex-1 px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                     placeholder="Enter emoji or icon"
                   />
-                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-2xl">
+                  <div className="w-12 h-12 bg-neutral-black-lighter border-2 border-neutral-black-lighter rounded-lg flex items-center justify-center text-2xl">
                     {formData.icon}
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-neutral-gray mt-1">
                   Use an emoji or icon character (e.g., ☕, 🧊, 🫖, 🥐)
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Sort Order</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Sort Order</label>
                 <input
                   type="number"
                   value={formData.sort_order}
                   onChange={(e) => setFormData({ ...formData, sort_order: Number(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                   placeholder="0"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-neutral-gray mt-1">
                   Lower numbers appear first in the menu
                 </p>
               </div>
@@ -210,9 +210,9 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                     type="checkbox"
                     checked={formData.active}
                     onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
-                    className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    className="rounded border-neutral-black-lighter text-primary-red focus:ring-primary-red"
                   />
-                  <span className="text-sm font-medium text-black">Active Category</span>
+                  <span className="text-sm font-bold text-neutral-white">Active Category</span>
                 </label>
               </div>
             </div>
@@ -224,23 +224,23 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
 
   // List View
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-neutral-black">
+      <div className="bg-neutral-black-light shadow-red-glow border-b-2 border-neutral-black-lighter">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <button
                 onClick={onBack}
-                className="flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
+                className="flex items-center space-x-2 text-neutral-white hover:text-primary-red transition-colors duration-200 font-semibold"
               >
                 <ArrowLeft className="h-5 w-5" />
                 <span>Dashboard</span>
               </button>
-              <h1 className="text-2xl font-playfair font-semibold text-black">Manage Categories</h1>
+              <h1 className="text-2xl font-bold text-neutral-white">Manage Categories</h1>
             </div>
             <button
               onClick={handleAddCategory}
-              className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
+              className="flex items-center space-x-2 bg-gradient-to-r from-primary-red to-primary-red-dark text-white px-4 py-2 rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 font-semibold shadow-red-glow"
             >
               <Plus className="h-4 w-4" />
               <span>Add Category</span>
@@ -250,16 +250,16 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+        <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-xl shadow-red-glow overflow-hidden">
           <div className="p-6">
-            <h2 className="text-lg font-playfair font-medium text-black mb-4">Categories</h2>
+            <h2 className="text-lg font-bold text-neutral-white mb-4">Categories</h2>
             
             {categories.length === 0 ? (
               <div className="text-center py-8">
-                <p className="text-gray-500 mb-4">No categories found</p>
+                <p className="text-neutral-gray-light mb-4">No categories found</p>
                 <button
                   onClick={handleAddCategory}
-                  className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
+                  className="bg-gradient-to-r from-primary-red to-primary-red-dark text-white px-4 py-2 rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 font-semibold shadow-red-glow"
                 >
                   Add First Category
                 </button>
@@ -269,39 +269,39 @@ const CategoryManager: React.FC<CategoryManagerProps> = ({ onBack }) => {
                 {categories.map((category) => (
                   <div
                     key={category.id}
-                    className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                    className="flex items-center justify-between p-4 border-2 border-neutral-black-lighter bg-neutral-black-lighter rounded-lg hover:border-primary-red transition-all duration-200"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-2 text-gray-400 cursor-move">
+                      <div className="flex items-center space-x-2 text-neutral-gray cursor-move">
                         <GripVertical className="h-4 w-4" />
-                        <span className="text-sm text-gray-500">#{category.sort_order}</span>
+                        <span className="text-sm font-semibold">#{category.sort_order}</span>
                       </div>
                       <div className="text-2xl">{category.icon}</div>
                       <div>
-                        <h3 className="font-medium text-black">{category.name}</h3>
-                        <p className="text-sm text-gray-500">ID: {category.id}</p>
+                        <h3 className="font-bold text-neutral-white">{category.name}</h3>
+                        <p className="text-sm text-neutral-gray">ID: {category.id}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      <span className={`px-3 py-1 rounded-lg text-xs font-bold ${
                         category.active 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-red-100 text-red-800'
+                          ? 'bg-primary-red text-white' 
+                          : 'bg-neutral-black-lighter text-neutral-gray border-2 border-neutral-black-lighter'
                       }`}>
                         {category.active ? 'Active' : 'Inactive'}
                       </span>
                       
                       <button
                         onClick={() => handleEditCategory(category)}
-                        className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded transition-colors duration-200"
+                        className="p-2 text-neutral-white hover:text-primary-red hover:bg-neutral-black-lighter rounded-lg transition-all duration-200"
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       
                       <button
                         onClick={() => handleDeleteCategory(category.id)}
-                        className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors duration-200"
+                        className="p-2 text-primary-red hover:text-white hover:bg-primary-red rounded-lg transition-all duration-200"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

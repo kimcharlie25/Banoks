@@ -232,7 +232,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'ClickEats@Admin!2025') {
+    if (password === 'Banoks@Admin!2025') {
       setIsAuthenticated(true);
       localStorage.setItem('beracah_admin_auth', 'true');
       setLoginError('');
@@ -251,35 +251,35 @@ const AdminDashboard: React.FC = () => {
   // Login Screen
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+      <div className="min-h-screen bg-neutral-black flex items-center justify-center">
+        <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-xl shadow-red-glow p-8 w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="mx-auto w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-4">
+            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary-red to-primary-red-dark rounded-full flex items-center justify-center mb-4 shadow-red-glow">
               <Lock className="h-8 w-8 text-white" />
             </div>
-            <h1 className="text-2xl font-playfair font-semibold text-black">Admin Access</h1>
-            <p className="text-gray-600 mt-2">Enter password to access the admin dashboard</p>
+            <h1 className="text-3xl font-bold text-neutral-white">Admin Access</h1>
+            <p className="text-neutral-gray-light mt-2">Enter password to access the admin dashboard</p>
           </div>
           
           <form onSubmit={handleLogin}>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-black mb-2">Password</label>
+              <label className="block text-sm font-bold text-neutral-white mb-2">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                 placeholder="Enter admin password"
                 required
               />
               {loginError && (
-                <p className="text-red-500 text-sm mt-2">{loginError}</p>
+                <p className="text-primary-red text-sm mt-2 font-semibold">{loginError}</p>
               )}
             </div>
             
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+              className="w-full bg-gradient-to-r from-primary-red to-primary-red-dark text-white py-3 rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 font-bold shadow-red-glow"
             >
               Access Dashboard
             </button>
@@ -291,10 +291,10 @@ const AdminDashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-neutral-black flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-red mx-auto mb-4"></div>
+          <p className="text-neutral-white font-semibold">Loading...</p>
         </div>
       </div>
     );
@@ -303,33 +303,33 @@ const AdminDashboard: React.FC = () => {
   // Form View (Add/Edit)
   if (currentView === 'add' || currentView === 'edit') {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="bg-white shadow-sm border-b">
+      <div className="min-h-screen bg-neutral-black">
+        <div className="bg-neutral-black-light shadow-red-glow border-b-2 border-neutral-black-lighter">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-4">
                 <button
                   onClick={handleCancel}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors duration-200"
+                  className="flex items-center space-x-2 text-neutral-white hover:text-primary-red transition-colors duration-200 font-semibold"
                 >
                   <ArrowLeft className="h-5 w-5" />
                   <span>Back</span>
                 </button>
-                <h1 className="text-2xl font-playfair font-semibold text-black">
+                <h1 className="text-2xl font-bold text-neutral-white">
                   {currentView === 'add' ? 'Add New Item' : 'Edit Item'}
                 </h1>
               </div>
               <div className="flex space-x-3">
                 <button
                   onClick={handleCancel}
-                  className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-4 py-2 border-2 border-neutral-black-lighter bg-neutral-black-lighter text-neutral-white rounded-lg hover:border-primary-red transition-all duration-200 flex items-center space-x-2 font-semibold"
                 >
                   <X className="h-4 w-4" />
                   <span>Cancel</span>
                 </button>
                 <button
                   onClick={handleSaveItem}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center space-x-2"
+                  className="px-4 py-2 bg-gradient-to-r from-primary-red to-primary-red-dark text-white rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 flex items-center space-x-2 font-semibold shadow-red-glow"
                 >
                   <Save className="h-4 w-4" />
                   <span>Save</span>
@@ -340,36 +340,36 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="bg-white rounded-xl shadow-sm p-8">
+          <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-xl shadow-red-glow p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Item Name *</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Item Name *</label>
                 <input
                   type="text"
                   value={formData.name || ''}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                   placeholder="Enter item name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Base Price *</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Base Price *</label>
                 <input
                   type="number"
                   value={formData.basePrice || ''}
                   onChange={(e) => setFormData({ ...formData, basePrice: Number(e.target.value) })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                   placeholder="0"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-black mb-2">Category *</label>
+                <label className="block text-sm font-bold text-neutral-white mb-2">Category *</label>
                 <select
                   value={formData.category || ''}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                 >
                   {categories.map(cat => (
                     <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -383,9 +383,9 @@ const AdminDashboard: React.FC = () => {
                     type="checkbox"
                     checked={formData.popular || false}
                     onChange={(e) => setFormData({ ...formData, popular: e.target.checked })}
-                    className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    className="rounded border-neutral-black-lighter text-primary-red focus:ring-primary-red"
                   />
-                  <span className="text-sm font-medium text-black">Mark as Popular</span>
+                  <span className="text-sm font-bold text-neutral-white">Mark as Popular</span>
                 </label>
               </div>
 
@@ -395,9 +395,9 @@ const AdminDashboard: React.FC = () => {
                     type="checkbox"
                     checked={formData.available ?? true}
                     onChange={(e) => setFormData({ ...formData, available: e.target.checked })}
-                    className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    className="rounded border-neutral-black-lighter text-primary-red focus:ring-primary-red"
                   />
-                  <span className="text-sm font-medium text-black">Available for Order</span>
+                  <span className="text-sm font-bold text-neutral-white">Available for Order</span>
                 </label>
               </div>
             </div>
@@ -407,12 +407,12 @@ const AdminDashboard: React.FC = () => {
               <h3 className="text-lg font-playfair font-medium text-black mb-4">Discount Pricing</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-black mb-2">Discount Price</label>
+                  <label className="block text-sm font-bold text-neutral-white mb-2">Discount Price</label>
                   <input
                     type="number"
                     value={formData.discountPrice || ''}
                     onChange={(e) => setFormData({ ...formData, discountPrice: Number(e.target.value) || undefined })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                     placeholder="Enter discount price"
                   />
                 </div>
@@ -423,33 +423,33 @@ const AdminDashboard: React.FC = () => {
                       type="checkbox"
                       checked={formData.discountActive || false}
                       onChange={(e) => setFormData({ ...formData, discountActive: e.target.checked })}
-                      className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                      className="rounded border-neutral-black-lighter text-primary-red focus:ring-primary-red"
                     />
-                    <span className="text-sm font-medium text-black">Enable Discount</span>
+                    <span className="text-sm font-bold text-neutral-white">Enable Discount</span>
                   </label>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-black mb-2">Discount Start Date</label>
+                  <label className="block text-sm font-bold text-neutral-white mb-2">Discount Start Date</label>
                   <input
                     type="datetime-local"
                     value={formData.discountStartDate || ''}
                     onChange={(e) => setFormData({ ...formData, discountStartDate: e.target.value || undefined })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-black mb-2">Discount End Date</label>
+                  <label className="block text-sm font-bold text-neutral-white mb-2">Discount End Date</label>
                   <input
                     type="datetime-local"
                     value={formData.discountEndDate || ''}
                     onChange={(e) => setFormData({ ...formData, discountEndDate: e.target.value || undefined })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
+                    className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                   />
                 </div>
               </div>
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-neutral-gray mt-2">
                 Leave dates empty for indefinite discount period. Discount will only be active if "Enable Discount" is checked and current time is within the date range.
               </p>
             </div>
@@ -459,7 +459,7 @@ const AdminDashboard: React.FC = () => {
               <textarea
                 value={formData.description || ''}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                 placeholder="Enter item description"
                 rows={3}
               />
@@ -475,7 +475,7 @@ const AdminDashboard: React.FC = () => {
             {/* Variations Section */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-playfair font-medium text-black">Size Variations</h3>
+                <h3 className="text-lg font-bold text-neutral-white">Size Variations</h3>
                 <button
                   onClick={addVariation}
                   className="flex items-center space-x-2 px-3 py-2 bg-cream-100 text-black rounded-lg hover:bg-cream-200 transition-colors duration-200"
@@ -514,7 +514,7 @@ const AdminDashboard: React.FC = () => {
             {/* Add-ons Section */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-playfair font-medium text-black">Add-ons</h3>
+                <h3 className="text-lg font-bold text-neutral-white">Add-ons</h3>
                 <button
                   onClick={addAddOn}
                   className="flex items-center space-x-2 px-3 py-2 bg-cream-100 text-black rounded-lg hover:bg-cream-200 transition-colors duration-200"
@@ -567,19 +567,19 @@ const AdminDashboard: React.FC = () => {
   // Items List View
   if (currentView === 'items') {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="bg-white shadow-sm border-b">
+      <div className="min-h-screen bg-neutral-black">
+        <div className="bg-neutral-black-light shadow-red-glow border-b-2 border-neutral-black-lighter">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-4">
                 <button
                   onClick={() => setCurrentView('dashboard')}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors duration-200"
+                  className="flex items-center space-x-2 text-neutral-white hover:text-primary-red transition-colors duration-200 font-semibold"
                 >
                   <ArrowLeft className="h-5 w-5" />
                   <span>Dashboard</span>
                 </button>
-                <h1 className="text-2xl font-playfair font-semibold text-black">Menu Items</h1>
+                <h1 className="text-2xl font-bold text-neutral-white">Menu Items</h1>
               </div>
               <div className="flex items-center space-x-3">
                 {showBulkActions && (
@@ -675,7 +675,7 @@ const AdminDashboard: React.FC = () => {
                         type="checkbox"
                         checked={selectedItems.length === menuItems.length && menuItems.length > 0}
                         onChange={handleSelectAll}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-neutral-black-lighter text-primary-red focus:ring-primary-red"
                       />
                       <span className="text-sm font-medium text-gray-700">
                         Select All ({menuItems.length} items)
@@ -804,7 +804,7 @@ const AdminDashboard: React.FC = () => {
                         type="checkbox"
                         checked={selectedItems.includes(item.id)}
                         onChange={() => handleSelectItem(item.id)}
-                        className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+                        className="rounded border-neutral-black-lighter text-primary-red focus:ring-primary-red"
                       />
                       <span className="text-sm text-gray-600">Select</span>
                     </label>
@@ -901,19 +901,19 @@ const AdminDashboard: React.FC = () => {
   // Site Settings View
   if (currentView === 'settings') {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="bg-white shadow-sm border-b">
+      <div className="min-h-screen bg-neutral-black">
+        <div className="bg-neutral-black-light shadow-red-glow border-b-2 border-neutral-black-lighter">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-4">
                 <button
                   onClick={() => setCurrentView('dashboard')}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors duration-200"
+                  className="flex items-center space-x-2 text-neutral-white hover:text-primary-red transition-colors duration-200 font-semibold"
                 >
                   <ArrowLeft className="h-5 w-5" />
                   <span>Dashboard</span>
                 </button>
-                <h1 className="text-2xl font-playfair font-semibold text-black">Site Settings</h1>
+                <h1 className="text-2xl font-bold text-neutral-white">Site Settings</h1>
               </div>
             </div>
           </div>
@@ -934,7 +934,7 @@ const AdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <Coffee className="h-8 w-8 text-black" />
-              <h1 className="text-2xl font-noto font-semibold text-black">ClickEats Admin</h1>
+              <h1 className="text-2xl font-noto font-semibold text-black">Bonok's Admin</h1>
             </div>
             <div className="flex items-center space-x-4">
               <a

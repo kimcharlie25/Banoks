@@ -90,13 +90,13 @@ const SiteSettingsManager: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-xl shadow-sm p-6">
+      <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-xl shadow-red-glow p-6">
         <div className="animate-pulse">
-          <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="h-6 bg-neutral-black-lighter rounded w-1/4 mb-4"></div>
           <div className="space-y-4">
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-            <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+            <div className="h-4 bg-neutral-black-lighter rounded w-3/4"></div>
+            <div className="h-4 bg-neutral-black-lighter rounded w-1/2"></div>
+            <div className="h-4 bg-neutral-black-lighter rounded w-2/3"></div>
           </div>
         </div>
       </div>
@@ -104,13 +104,13 @@ const SiteSettingsManager: React.FC = () => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6">
+    <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-xl shadow-red-glow p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-noto font-semibold text-black">Site Settings</h2>
+        <h2 className="text-2xl font-bold text-neutral-white">Site Settings</h2>
         {!isEditing ? (
           <button
             onClick={() => setIsEditing(true)}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center space-x-2"
+            className="bg-gradient-to-r from-primary-red to-primary-red-dark text-white px-4 py-2 rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 flex items-center space-x-2 font-semibold shadow-red-glow"
           >
             <Save className="h-4 w-4" />
             <span>Edit Settings</span>
@@ -119,7 +119,7 @@ const SiteSettingsManager: React.FC = () => {
           <div className="flex space-x-2">
             <button
               onClick={handleCancel}
-              className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-200 flex items-center space-x-2"
+              className="bg-neutral-black-lighter text-neutral-white px-4 py-2 rounded-lg hover:border-primary-red border-2 border-neutral-black-lighter transition-all duration-200 flex items-center space-x-2 font-semibold"
             >
               <X className="h-4 w-4" />
               <span>Cancel</span>
@@ -127,7 +127,7 @@ const SiteSettingsManager: React.FC = () => {
             <button
               onClick={handleSave}
               disabled={uploading}
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center space-x-2 disabled:opacity-50"
+              className="bg-gradient-to-r from-primary-red to-primary-red-dark text-white px-4 py-2 rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 flex items-center space-x-2 disabled:opacity-50 font-semibold shadow-red-glow"
             >
               <Save className="h-4 w-4" />
               <span>{uploading ? 'Saving...' : 'Save Changes'}</span>
@@ -139,11 +139,11 @@ const SiteSettingsManager: React.FC = () => {
       <div className="space-y-6">
         {/* Site Logo */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-bold text-neutral-white mb-2">
             Site Logo
           </label>
           <div className="flex items-center space-x-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full overflow-hidden bg-neutral-black-lighter flex items-center justify-center border-2 border-neutral-black-lighter">
               {logoPreview ? (
                 <img
                   src={logoPreview}
@@ -151,7 +151,7 @@ const SiteSettingsManager: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="text-2xl text-gray-400">☕</div>
+                <div className="text-2xl text-neutral-gray">☕</div>
               )}
             </div>
             {isEditing && (
@@ -165,7 +165,7 @@ const SiteSettingsManager: React.FC = () => {
                 />
                 <label
                   htmlFor="logo-upload"
-                  className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-200 flex items-center space-x-2 cursor-pointer"
+                  className="bg-neutral-black-lighter text-neutral-white px-4 py-2 rounded-lg hover:border-primary-red border-2 border-neutral-black-lighter transition-all duration-200 flex items-center space-x-2 cursor-pointer font-semibold"
                 >
                   <Upload className="h-4 w-4" />
                   <span>Upload Logo</span>
@@ -177,7 +177,7 @@ const SiteSettingsManager: React.FC = () => {
 
         {/* Site Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-bold text-neutral-white mb-2">
             Site Name
           </label>
           {isEditing ? (
@@ -186,17 +186,17 @@ const SiteSettingsManager: React.FC = () => {
               name="site_name"
               value={formData.site_name}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
               placeholder="Enter site name"
             />
           ) : (
-            <p className="text-lg font-medium text-black">{siteSettings?.site_name}</p>
+            <p className="text-lg font-bold text-neutral-white">{siteSettings?.site_name}</p>
           )}
         </div>
 
         {/* Site Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-bold text-neutral-white mb-2">
             Site Description
           </label>
           {isEditing ? (
@@ -205,18 +205,18 @@ const SiteSettingsManager: React.FC = () => {
               value={formData.site_description}
               onChange={handleInputChange}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
               placeholder="Enter site description"
             />
           ) : (
-            <p className="text-gray-600">{siteSettings?.site_description}</p>
+            <p className="text-neutral-gray-light">{siteSettings?.site_description}</p>
           )}
         </div>
 
         {/* Currency Settings */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-neutral-white mb-2">
               Currency Symbol
             </label>
             {isEditing ? (
@@ -225,15 +225,15 @@ const SiteSettingsManager: React.FC = () => {
                 name="currency"
                 value={formData.currency}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                 placeholder="e.g., ₱, $, €"
               />
             ) : (
-              <p className="text-lg font-medium text-black">{siteSettings?.currency}</p>
+              <p className="text-lg font-bold text-neutral-white">{siteSettings?.currency}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-bold text-neutral-white mb-2">
               Currency Code
             </label>
             {isEditing ? (
@@ -242,11 +242,11 @@ const SiteSettingsManager: React.FC = () => {
                 name="currency_code"
                 value={formData.currency_code}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                 placeholder="e.g., PHP, USD, EUR"
               />
             ) : (
-              <p className="text-lg font-medium text-black">{siteSettings?.currency_code}</p>
+              <p className="text-lg font-bold text-neutral-white">{siteSettings?.currency_code}</p>
             )}
           </div>
         </div>

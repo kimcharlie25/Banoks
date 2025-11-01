@@ -2,14 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ramen Yard Custom Styles */
-/* Minimal helpers for ramen palette when needed outside tailwind tokens */
-.bg-ramen-cream { background-color: #FFF3E0; }
-.bg-ramen-beige { background-color: #F7E7CE; }
-.text-ramen-red { color: #D7263D; }
-.text-ramen-dark { color: #0B0A0A; }
-.border-ramen-sesame { border-color: #D1C7B7; }
-.ring-ramen-gold { --tw-ring-color: #E0A106; }
+/* Modern Restaurant Branding - Red, White, Black */
+@layer base {
+  body {
+    @apply bg-neutral-black text-neutral-white antialiased;
+  }
+}
+
+@layer utilities {
+  .text-gradient-red {
+    @apply bg-gradient-to-r from-primary-red to-primary-red-light bg-clip-text text-transparent;
+  }
+  
+  .border-gradient-red {
+    border-image: linear-gradient(to right, #E63946, #FF5A5F) 1;
+  }
+  
+  .shadow-red-glow {
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+  }
+  
+  .shadow-red-glow-lg {
+    box-shadow: 0 0 40px rgba(230, 57, 70, 0.4);
+  }
+}
 
 /* Hide scrollbar for mobile nav */
 .scrollbar-hide {
