@@ -15,6 +15,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
   const [customerName, setCustomerName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [serviceType, setServiceType] = useState<ServiceType>('dine-in');
+  const [branch, setBranch] = useState('');
   const [address, setAddress] = useState('');
   const [landmark, setLandmark] = useState('');
   const [pickupTime, setPickupTime] = useState('5-10');
@@ -65,6 +66,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, totalPrice, onBack }) =>
 👤 Customer: ${customerName}
 📞 Contact: ${contactNumber}
 📍 Service: ${serviceType.charAt(0).toUpperCase() + serviceType.slice(1)}
+${(serviceType === 'pickup' || serviceType === 'dine-in') && branch ? `🏢 Branch: ${branch}` : ''}
 ${serviceType === 'delivery' ? `🏠 Address: ${address}${landmark ? `\n🗺️ Landmark: ${landmark}` : ''}` : ''}
 ${serviceType === 'pickup' ? `⏰ Pickup Time: ${timeInfo}` : ''}
 ${serviceType === 'dine-in' ? dineInInfo : ''}
@@ -107,8 +109,8 @@ Please confirm this order to proceed. Thank you for choosing Banok's!
 
   const isDetailsValid = customerName && contactNumber && 
     (serviceType !== 'delivery' || address) && 
-    (serviceType !== 'pickup' || (pickupTime !== 'custom' || customTime)) &&
-    (serviceType !== 'dine-in' || (partySize > 0 && dineInTime));
+    (serviceType !== 'pickup' || (branch && (pickupTime !== 'custom' || customTime))) &&
+    (serviceType !== 'dine-in' || (branch && partySize > 0 && dineInTime));
 
   if (step === 'details') {
     return (
@@ -212,6 +214,35 @@ Please confirm this order to proceed. Thank you for choosing Banok's!
                   ))}
                 </div>
               </div>
+
+              {/* Branch Selection (for Pickup and Dine-in only) */}
+              {(serviceType === 'pickup' || serviceType === 'dine-in') && (
+                <div>
+                  <label className="block text-sm font-bold text-neutral-white mb-3">Select Branch *</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {[
+                      { value: 'manukan-boulevard', label: 'Manukan Boulevard Branch', icon: '🏢' },
+                      { value: 'east-poblacion', label: 'East Poblacion Branch', icon: '🏢' }
+                    ].map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setBranch(option.label)}
+                        className={`p-4 rounded-lg border-2 transition-all duration-200 font-semibold text-left ${
+                          branch === option.label
+                            ? 'border-primary-red bg-gradient-to-r from-primary-red to-primary-red-dark text-white shadow-red-glow'
+                            : 'border-neutral-black-lighter bg-neutral-black-lighter text-neutral-white hover:border-primary-red'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <span className="text-2xl">{option.icon}</span>
+                          <span className="text-sm font-medium">{option.label}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Dine-in Details */}
               {serviceType === 'dine-in' && (
@@ -434,6 +465,9 @@ Please confirm this order to proceed. Thank you for choosing Banok's!
               <p className="text-sm text-neutral-gray-light"><span className="text-primary-red font-semibold">Name:</span> {customerName}</p>
               <p className="text-sm text-neutral-gray-light"><span className="text-primary-red font-semibold">Contact:</span> {contactNumber}</p>
               <p className="text-sm text-neutral-gray-light"><span className="text-primary-red font-semibold">Service:</span> {serviceType.charAt(0).toUpperCase() + serviceType.slice(1)}</p>
+              {(serviceType === 'pickup' || serviceType === 'dine-in') && branch && (
+                <p className="text-sm text-neutral-gray-light"><span className="text-primary-red font-semibold">Branch:</span> {branch}</p>
+              )}
               {serviceType === 'delivery' && (
                 <>
                   <p className="text-sm text-neutral-gray-light"><span className="text-primary-red font-semibold">Address:</span> {address}</p>

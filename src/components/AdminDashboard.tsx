@@ -404,7 +404,7 @@ const AdminDashboard: React.FC = () => {
 
             {/* Discount Pricing Section */}
             <div className="mb-8">
-              <h3 className="text-lg font-playfair font-medium text-black mb-4">Discount Pricing</h3>
+              <h3 className="text-lg font-bold text-neutral-white mb-4">Discount Pricing</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-bold text-neutral-white mb-2">Discount Price</label>
@@ -455,7 +455,7 @@ const AdminDashboard: React.FC = () => {
             </div>
 
             <div className="mb-8">
-              <label className="block text-sm font-medium text-black mb-2">Description *</label>
+              <label className="block text-sm font-bold text-neutral-white mb-2">Description *</label>
               <textarea
                 value={formData.description || ''}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -478,7 +478,7 @@ const AdminDashboard: React.FC = () => {
                 <h3 className="text-lg font-bold text-neutral-white">Size Variations</h3>
                 <button
                   onClick={addVariation}
-                  className="flex items-center space-x-2 px-3 py-2 bg-cream-100 text-black rounded-lg hover:bg-cream-200 transition-colors duration-200"
+                  className="flex items-center space-x-2 px-3 py-2 bg-neutral-black-lighter text-neutral-white rounded-lg hover:bg-primary-red hover:text-white border-2 border-neutral-black-lighter hover:border-primary-red transition-all duration-200 font-semibold"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Add Variation</span>
@@ -486,24 +486,24 @@ const AdminDashboard: React.FC = () => {
               </div>
 
               {formData.variations?.map((variation, index) => (
-                <div key={variation.id} className="flex items-center space-x-3 mb-3 p-4 bg-gray-50 rounded-lg">
+                <div key={variation.id} className="flex items-center space-x-3 mb-3 p-4 bg-neutral-black-lighter rounded-lg border-2 border-neutral-black-lighter">
                   <input
                     type="text"
                     value={variation.name}
                     onChange={(e) => updateVariation(index, 'name', e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="flex-1 px-3 py-2 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                     placeholder="Variation name (e.g., Small, Medium, Large)"
                   />
                   <input
                     type="number"
                     value={variation.price}
                     onChange={(e) => updateVariation(index, 'price', Number(e.target.value))}
-                    className="w-24 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-32 px-3 py-2 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                     placeholder="Price"
                   />
                   <button
                     onClick={() => removeVariation(index)}
-                    className="p-2 text-red-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors duration-200"
+                    className="p-2 text-primary-red hover:text-primary-red-dark hover:bg-neutral-black rounded transition-colors duration-200"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -517,7 +517,7 @@ const AdminDashboard: React.FC = () => {
                 <h3 className="text-lg font-bold text-neutral-white">Add-ons</h3>
                 <button
                   onClick={addAddOn}
-                  className="flex items-center space-x-2 px-3 py-2 bg-cream-100 text-black rounded-lg hover:bg-cream-200 transition-colors duration-200"
+                  className="flex items-center space-x-2 px-3 py-2 bg-neutral-black-lighter text-neutral-white rounded-lg hover:bg-primary-red hover:text-white border-2 border-neutral-black-lighter hover:border-primary-red transition-all duration-200 font-semibold"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Add Add-on</span>
@@ -525,18 +525,18 @@ const AdminDashboard: React.FC = () => {
               </div>
 
               {formData.addOns?.map((addOn, index) => (
-                <div key={addOn.id} className="flex items-center space-x-3 mb-3 p-4 bg-gray-50 rounded-lg">
+                <div key={addOn.id} className="flex items-center space-x-3 mb-3 p-4 bg-neutral-black-lighter rounded-lg border-2 border-neutral-black-lighter">
                   <input
                     type="text"
                     value={addOn.name}
                     onChange={(e) => updateAddOn(index, 'name', e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="flex-1 px-3 py-2 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                     placeholder="Add-on name"
                   />
                   <select
                     value={addOn.category}
                     onChange={(e) => updateAddOn(index, 'category', e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="px-3 py-2 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 font-medium"
                   >
                     {addOnCategories.map(cat => (
                       <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -546,12 +546,12 @@ const AdminDashboard: React.FC = () => {
                     type="number"
                     value={addOn.price}
                     onChange={(e) => updateAddOn(index, 'price', Number(e.target.value))}
-                    className="w-24 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-32 px-3 py-2 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
                     placeholder="Price"
                   />
                   <button
                     onClick={() => removeAddOn(index)}
-                    className="p-2 text-red-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors duration-200"
+                    className="p-2 text-primary-red hover:text-primary-red-dark hover:bg-neutral-black rounded transition-colors duration-200"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
