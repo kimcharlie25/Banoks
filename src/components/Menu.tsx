@@ -88,10 +88,10 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
     <>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
-        <h2 className="text-5xl font-bold text-neutral-white mb-4 tracking-tight">Our Menu</h2>
+        <h2 className="text-5xl font-bold text-neutral-white mb-4 tracking-tight">Maayong adlaw!</h2>
         <div className="h-1 w-24 bg-gradient-to-r from-primary-red to-primary-red-dark mx-auto mb-6 rounded-full"></div>
         <p className="text-neutral-gray-light max-w-2xl mx-auto text-lg">
-          Discover our exceptional selection of dishes, crafted with passion and premium ingredients.
+        Known as the Manukan Original, Banok's serve dishes marinated in special local spices and grilled the traditional way. It’s smoky, juicy, and full of Bisaya flavor  —  traditional, grilled with passion, and shared with love. Proudly local.🔥
         </p>
       </div>
 

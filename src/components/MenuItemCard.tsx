@@ -200,7 +200,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
                   onClick={handleAddToCart}
                   className="bg-gradient-to-r from-primary-red to-primary-red-dark text-white px-6 py-2.5 rounded-lg hover:from-primary-red-dark hover:to-primary-red transition-all duration-200 transform hover:scale-105 font-bold text-sm shadow-red-glow hover:shadow-red-glow-lg"
                 >
-                  {item.variations?.length || item.addOns?.length ? 'Customize' : 'Add to Cart'}
+                  {item.variations?.length || item.addOns?.length ? 'Select' : 'Add to Cart'}
                 </button>
               ) : (
                 <div className="flex items-center space-x-2 bg-neutral-black-lighter rounded-lg p-1 border-2 border-primary-red shadow-red-glow">
@@ -238,7 +238,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
           <div className="bg-neutral-black-light border-2 border-neutral-black-lighter rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-red-glow-lg">
             <div className="sticky top-0 bg-neutral-black-light border-b-2 border-neutral-black-lighter p-6 flex items-center justify-between rounded-t-2xl">
               <div>
-                <h3 className="text-xl font-bold text-neutral-white">Customize {item.name}</h3>
+                <h3 className="text-xl font-bold text-neutral-white">Select Options for {item.name}</h3>
                 <p className="text-sm text-neutral-gray-light mt-1">Choose your preferences</p>
               </div>
               <button
