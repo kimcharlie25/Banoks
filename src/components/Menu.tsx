@@ -1,6 +1,7 @@
 import React from 'react';
 import { MenuItem, CartItem } from '../types';
 import { useCategories } from '../hooks/useCategories';
+import { useSiteSettings } from '../hooks/useSiteSettings';
 import MenuItemCard from './MenuItemCard';
 
 // Preload images for better performance
@@ -22,6 +23,7 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuantity }) => {
   const { categories } = useCategories();
+  const { siteSettings, loading: settingsLoading } = useSiteSettings();
   const [activeCategory, setActiveCategory] = React.useState('hot-coffee');
 
   // Preload images when menu items change
@@ -86,13 +88,59 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
 
   return (
     <>
+      {/* Temporarily Closed Modal */}
+      {siteSettings?.is_temporarily_closed && (
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-neutral-black-light border-4 border-primary-red rounded-2xl max-w-md w-full shadow-red-glow-lg animate-scale-in">
+            <div className="p-8 text-center">
+              <div className="mb-6">
+                <div className="inline-block p-4 bg-primary-red/20 rounded-full mb-4">
+                  <span className="text-6xl">🚫</span>
+                </div>
+                <h2 className="text-3xl font-bold text-neutral-white mb-3">
+                  Temporarily Closed
+                </h2>
+                <div className="h-1 w-24 bg-gradient-to-r from-primary-red to-primary-red-dark mx-auto mb-4 rounded-full"></div>
+              </div>
+              
+              <p className="text-neutral-gray-light text-lg mb-6 leading-relaxed">
+                We're currently closed for the moment. Please check back later or contact us for more information.
+              </p>
+              
+              <div className="bg-neutral-black-lighter border-2 border-neutral-black-lighter rounded-lg p-4 mb-6">
+                <p className="text-sm text-neutral-gray-light">
+                  <span className="text-primary-red font-bold">📞 Need assistance?</span><br />
+                  Feel free to reach out to us for inquiries or updates.
+                </p>
+              </div>
+
+              <p className="text-sm text-neutral-gray">
+                Thank you for your understanding! 🙏
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
-        <h2 className="text-5xl font-bold text-neutral-white mb-4 tracking-tight">Maayong adlaw!</h2>
-        <div className="h-1 w-24 bg-gradient-to-r from-primary-red to-primary-red-dark mx-auto mb-6 rounded-full"></div>
-        <p className="text-neutral-gray-light max-w-2xl mx-auto text-lg">
-        Known as the Manukan Original, Banok's serve dishes marinated in special local spices and grilled the traditional way. It’s smoky, juicy, and full of Bisaya flavor  —  traditional, grilled with passion, and shared with love. Proudly local.🔥
-        </p>
+        {settingsLoading ? (
+          <>
+            <div className="h-14 bg-neutral-black-lighter rounded-lg mb-4 mx-auto max-w-md animate-pulse"></div>
+            <div className="h-1 w-24 bg-neutral-black-lighter mx-auto mb-6 rounded-full animate-pulse"></div>
+            <div className="h-24 bg-neutral-black-lighter rounded-lg mx-auto max-w-2xl animate-pulse"></div>
+          </>
+        ) : (
+          <>
+            <h2 className="text-5xl font-bold text-neutral-white mb-4 tracking-tight">
+              {siteSettings?.welcome_greeting || 'Maayong adlaw!'}
+            </h2>
+            <div className="h-1 w-24 bg-gradient-to-r from-primary-red to-primary-red-dark mx-auto mb-6 rounded-full"></div>
+            <p className="text-neutral-gray-light max-w-2xl mx-auto text-lg">
+              {siteSettings?.welcome_description || 'Welcome to our restaurant'}
+            </p>
+          </>
+        )}
       </div>
 
       {categories.map((category) => {
@@ -117,6 +165,7 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
                     onAddToCart={addToCart}
                     quantity={cartItem?.quantity || 0}
                     onUpdateQuantity={updateQuantity}
+                    isRestaurantClosed={siteSettings?.is_temporarily_closed || false}
                   />
                 );
               })}

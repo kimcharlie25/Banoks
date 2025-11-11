@@ -7,13 +7,15 @@ interface MenuItemCardProps {
   onAddToCart: (item: MenuItem, quantity?: number, variation?: Variation, addOns?: AddOn[]) => void;
   quantity: number;
   onUpdateQuantity: (id: string, quantity: number) => void;
+  isRestaurantClosed?: boolean;
 }
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ 
   item, 
   onAddToCart, 
   quantity, 
-  onUpdateQuantity 
+  onUpdateQuantity,
+  isRestaurantClosed = false
 }) => {
   const [showCustomization, setShowCustomization] = useState(false);
   const [selectedVariation, setSelectedVariation] = useState<Variation | undefined>(
@@ -188,7 +190,14 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
             
             {/* Action Buttons */}
             <div className="flex-shrink-0">
-              {!item.available ? (
+              {isRestaurantClosed ? (
+                <button
+                  disabled
+                  className="bg-neutral-black-lighter text-neutral-gray px-4 py-2.5 rounded-lg cursor-not-allowed font-semibold text-sm border border-neutral-black-lighter"
+                >
+                  Closed
+                </button>
+              ) : !item.available ? (
                 <button
                   disabled
                   className="bg-neutral-black-lighter text-neutral-gray px-4 py-2.5 rounded-lg cursor-not-allowed font-semibold text-sm border border-neutral-black-lighter"

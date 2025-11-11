@@ -75,4 +75,7 @@ export interface SiteSettings {
   site_description: string;
   currency: string;
   currency_code: string;
+  welcome_greeting: string;
+  welcome_description: string;
+  is_temporarily_closed: boolean;
 }

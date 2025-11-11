@@ -25,7 +25,10 @@ export const useSiteSettings = () => {
         site_logo: data.find(s => s.id === 'site_logo')?.value || '',
         site_description: data.find(s => s.id === 'site_description')?.value || '',
         currency: data.find(s => s.id === 'currency')?.value || 'PHP',
-        currency_code: data.find(s => s.id === 'currency_code')?.value || 'PHP'
+        currency_code: data.find(s => s.id === 'currency_code')?.value || 'PHP',
+        welcome_greeting: data.find(s => s.id === 'welcome_greeting')?.value || 'Maayong adlaw!',
+        welcome_description: data.find(s => s.id === 'welcome_description')?.value || 'Welcome to our restaurant',
+        is_temporarily_closed: data.find(s => s.id === 'is_temporarily_closed')?.value === 'true'
       };
 
       setSiteSettings(settings);

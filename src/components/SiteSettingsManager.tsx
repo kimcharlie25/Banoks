@@ -11,7 +11,10 @@ const SiteSettingsManager: React.FC = () => {
     site_name: '',
     site_description: '',
     currency: '',
-    currency_code: ''
+    currency_code: '',
+    welcome_greeting: '',
+    welcome_description: '',
+    is_temporarily_closed: false
   });
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string>('');
@@ -22,7 +25,10 @@ const SiteSettingsManager: React.FC = () => {
         site_name: siteSettings.site_name,
         site_description: siteSettings.site_description,
         currency: siteSettings.currency,
-        currency_code: siteSettings.currency_code
+        currency_code: siteSettings.currency_code,
+        welcome_greeting: siteSettings.welcome_greeting,
+        welcome_description: siteSettings.welcome_description,
+        is_temporarily_closed: siteSettings.is_temporarily_closed
       });
       setLogoPreview(siteSettings.site_logo);
     }
@@ -64,7 +70,10 @@ const SiteSettingsManager: React.FC = () => {
         site_description: formData.site_description,
         currency: formData.currency,
         currency_code: formData.currency_code,
-        site_logo: logoUrl
+        site_logo: logoUrl,
+        welcome_greeting: formData.welcome_greeting,
+        welcome_description: formData.welcome_description,
+        is_temporarily_closed: String(formData.is_temporarily_closed)
       });
 
       setIsEditing(false);
@@ -80,12 +89,22 @@ const SiteSettingsManager: React.FC = () => {
         site_name: siteSettings.site_name,
         site_description: siteSettings.site_description,
         currency: siteSettings.currency,
-        currency_code: siteSettings.currency_code
+        currency_code: siteSettings.currency_code,
+        welcome_greeting: siteSettings.welcome_greeting,
+        welcome_description: siteSettings.welcome_description,
+        is_temporarily_closed: siteSettings.is_temporarily_closed
       });
       setLogoPreview(siteSettings.site_logo);
     }
     setIsEditing(false);
     setLogoFile(null);
+  };
+
+  const handleToggleChange = (checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      is_temporarily_closed: checked
+    }));
   };
 
   if (loading) {
@@ -137,6 +156,53 @@ const SiteSettingsManager: React.FC = () => {
       </div>
 
       <div className="space-y-6">
+        {/* Temporarily Closed Toggle - Prominent at top */}
+        <div className="bg-neutral-black-lighter border-2 border-primary-red rounded-xl p-6">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-neutral-white mb-2 flex items-center">
+                <span className="text-2xl mr-3">🚫</span>
+                Temporarily Close Restaurant
+              </h3>
+              <p className="text-sm text-neutral-gray-light">
+                When enabled, customers will see a "Temporarily Closed" modal and cannot order. Use this for holidays, maintenance, or temporary closures.
+              </p>
+            </div>
+            <div className="ml-6">
+              <label className={`relative inline-flex items-center ${isEditing ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
+                <input
+                  type="checkbox"
+                  checked={formData.is_temporarily_closed}
+                  onChange={(e) => handleToggleChange(e.target.checked)}
+                  disabled={!isEditing}
+                  className="sr-only peer"
+                />
+                <div className={`w-20 h-10 rounded-full peer peer-focus:ring-4 peer-focus:ring-primary-red transition-all duration-300 relative ${
+                  formData.is_temporarily_closed 
+                    ? 'bg-gradient-to-r from-primary-red to-primary-red-dark shadow-red-glow' 
+                    : 'bg-neutral-gray border-2 border-neutral-black-lighter'
+                } ${!isEditing ? 'opacity-50' : ''}`}>
+                  <div className={`absolute top-1 left-1 bg-white rounded-full h-8 w-8 transition-transform duration-300 shadow-lg flex items-center justify-center ${
+                    formData.is_temporarily_closed ? 'translate-x-10' : 'translate-x-0'
+                  }`}>
+                    {formData.is_temporarily_closed ? (
+                      <span className="text-primary-red text-xl font-bold">✕</span>
+                    ) : (
+                      <span className="text-neutral-gray text-xl font-bold">○</span>
+                    )}
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+          {formData.is_temporarily_closed && (
+            <div className="mt-4 bg-primary-red/10 border-2 border-primary-red rounded-lg p-4">
+              <p className="text-sm font-bold text-primary-red">⚠️ Restaurant is currently marked as TEMPORARILY CLOSED</p>
+              <p className="text-xs text-neutral-gray-light mt-1">Customers will see a closure notice and cannot place orders</p>
+            </div>
+          )}
+        </div>
+
         {/* Site Logo */}
         <div>
           <label className="block text-sm font-bold text-neutral-white mb-2">
@@ -249,6 +315,51 @@ const SiteSettingsManager: React.FC = () => {
               <p className="text-lg font-bold text-neutral-white">{siteSettings?.currency_code}</p>
             )}
           </div>
+        </div>
+
+        {/* Welcome Section Divider */}
+        <div className="border-t-2 border-neutral-black-lighter pt-6 mt-2">
+          <h3 className="text-xl font-bold text-neutral-white mb-4">Welcome Section (Menu Page)</h3>
+        </div>
+
+        {/* Welcome Greeting */}
+        <div>
+          <label className="block text-sm font-bold text-neutral-white mb-2">
+            Welcome Greeting
+          </label>
+          {isEditing ? (
+            <input
+              type="text"
+              name="welcome_greeting"
+              value={formData.welcome_greeting}
+              onChange={handleInputChange}
+              className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
+              placeholder="e.g., Maayong adlaw!"
+            />
+          ) : (
+            <p className="text-lg font-bold text-neutral-white">{siteSettings?.welcome_greeting}</p>
+          )}
+          <p className="text-xs text-neutral-gray mt-1">The main greeting text shown at the top of the menu page</p>
+        </div>
+
+        {/* Welcome Description */}
+        <div>
+          <label className="block text-sm font-bold text-neutral-white mb-2">
+            Welcome Description
+          </label>
+          {isEditing ? (
+            <textarea
+              name="welcome_description"
+              value={formData.welcome_description}
+              onChange={handleInputChange}
+              rows={4}
+              className="w-full px-4 py-3 bg-neutral-white text-neutral-black border-2 border-neutral-black-lighter rounded-lg focus:ring-2 focus:ring-primary-red focus:border-primary-red transition-all duration-200 placeholder-neutral-gray font-medium"
+              placeholder="Enter a description of your restaurant..."
+            />
+          ) : (
+            <p className="text-neutral-gray-light">{siteSettings?.welcome_description}</p>
+          )}
+          <p className="text-xs text-neutral-gray mt-1">The description text shown below the greeting</p>
         </div>
       </div>
     </div>
